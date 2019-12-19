@@ -1,9 +1,9 @@
 html,body{
     height: 100%;
+    background-color: rgb(23, 148, 250);
 }
 .ImagenCriptomonedas{
     max-width: 100%;
     height: auto;
-    object-fit: contain;
 
 }

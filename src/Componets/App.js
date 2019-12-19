@@ -1,19 +1,18 @@
 import React from 'react';
-import Slider from './Slider';
-import CriptoImage1 from '../Img/Criptomonedas01.jpg';
-import CriptoImage2 from '../Img/Criptomonedas02.jpg';
-import CriptoImage3 from '../Img/Criptomonedas03.jpg';
+import CriptoImage from '../Img/CriptoImage.png';
+import Form from './Form';
 
 
 function App() {
   return (
     <div>
       <div className="row">
-        <div className="one-half column">
-          <Slider Images= {[CriptoImage1,CriptoImage2,CriptoImage3]}></Slider>
+        <div className="col-md-5">
+        <img src={CriptoImage} className="ImagenCriptomonedas"></img>
         </div>
-        <div className="six columns">
+        <div className="col-md-5">
           <h2>Formulario</h2>
+          <Form></Form>
         </div>
       </div>
     </div>
