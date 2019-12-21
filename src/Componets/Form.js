@@ -5,6 +5,7 @@ export default function Form(props){
 
     const [Moneda,SetMoneda]= useState('');
     const [Cripto, SetCripto]= useState('');
+    
 
     function SaveData(){
         const Obj= {
@@ -26,7 +27,7 @@ export default function Form(props){
     }
     return (
         <div>
-            <h2 className="text-white">Cotiza tus criptomonedas</h2>
+            <h2 className="text-white">Cotiza tus Criptomonedas</h2>
              <div className="form-group">
                  <label>Selecciona tu moneda</label>
              <select className="form-control" onChange={(e)=> SetMoneda(e.target.value)}>
@@ -44,7 +45,7 @@ export default function Form(props){
              </select>
              </div>
              <div className="form-group">
-                <button className="btn btn-primary" onClick={SaveData} disabled={ValidateData}>Cotizar Moneda</button>
+                <button className="btn btn-primary btn-lg btn-block" onClick={SaveData} disabled={ValidateData}>Cotizar Moneda</button>
              </div>
         </div>
     )
