@@ -3,21 +3,49 @@ import React,{useState,useEffect} from 'react';
 
 export default function Form(props){
 
-    const [Name,SetName]= useState('');
+    const [Moneda,SetMoneda]= useState('');
+    const [Cripto, SetCripto]= useState('');
 
-    function ShowData(){
-        alert(Name);
+    function SaveData(){
+        const Obj= {
+            Currency: Moneda,
+            Criptomoneda: Cripto
+        };
+        props.ExecuteCotizacion(Obj);
+    }
+    function ValidateData(){
+        if (Moneda=== '' && Cripto=== ''){
+            return true;
+        }
+        else if (Moneda!== '' && Cripto=== ''){
+            return true;
+        }
+        else{
+           return false;
+        }
     }
     return (
         <div>
-            <h4>Consulte su moneda</h4>
-            <form>
-                <div className="row">
-                <label for="Moneda"></label>
-                    <input className="form-control" id="Moneda" placeholder="Su Moneda" onChange={(e)=> SetName(e.target.value)}></input>
-                </div>
-                <input className="btn btn-primary" type="button" value="Enviar Datos" onClick={ShowData}></input>
-            </form>
+            <h2 className="text-white">Cotiza tus criptomonedas</h2>
+             <div className="form-group">
+                 <label>Selecciona tu moneda</label>
+             <select className="form-control" onChange={(e)=> SetMoneda(e.target.value)}>
+                <option selected disabled value="default">--Selecciona--</option>
+                <option value="USD">Dolar Estadounidense (USD)</option>
+                <option value="USD">Peso Dominicano (DOP)</option>
+             </select>
+             </div>
+             <div className="form-group">
+                 <label>Selecciona tu criptomoneda</label>
+             <select className="form-control" onChange={(e)=> SetCripto(e.target.value)} disabled={Moneda=== ''? true: false}>
+             <option selected disabled value="default">--Selecciona--</option>
+                <option value="ET">Eteriun</option>
+                <option value="BT">Bitcoin</option>
+             </select>
+             </div>
+             <div className="form-group">
+                <button className="btn btn-primary" onClick={SaveData} disabled={ValidateData}>Cotizar Moneda</button>
+             </div>
         </div>
     )
 }

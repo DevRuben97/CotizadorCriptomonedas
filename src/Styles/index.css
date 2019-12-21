@@ -1,9 +1,23 @@
 html,body{
     height: 100%;
-    background-color: rgb(23, 148, 250);
+    background-color: rgb(17, 31, 46);
 }
 .ImagenCriptomonedas{
     max-width: 100%;
     height: auto;
 
+}
+.ContenedorImagen{
+    margin-top: 100px;
+    
+}
+h2{
+    font-family: 'Segoe UI';
+    font-weight: bold;
+
+}
+label{
+    font-family: 'Segoe UI';
+    color: white;
+    font-size: 14px;
 }
