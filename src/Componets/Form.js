@@ -1,52 +1,79 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
+import { GetCryptocurrencysList } from "../Http/Cryptocurrency";
 
+export default function Form(props) {
+  const [Moneda, SetMoneda] = useState("");
+  const [Cripto, SetCripto] = useState("");
+  const [criptoCurrency, SetCriptoCurrency] = useState([]);
 
-export default function Form(props){
+  useEffect(() => {
+    RequestCurrencyListData();
+  }, [criptoCurrency]);
 
-    const [Moneda,SetMoneda]= useState('');
-    const [Cripto, SetCripto]= useState('');
-    
+  async function RequestCurrencyListData() {
+    const { data } = await GetCryptocurrencysList(15);
+    SetCriptoCurrency(data.Data);
+  }
 
-    function SaveData(){
-        const Obj= {
-            Currency: Moneda,
-            Criptomoneda: Cripto
-        };
-        props.ExecuteCotizacion(Obj);
+  function SaveData() {
+    const Obj = {
+      Currency: Moneda,
+      Criptomoneda: Cripto
+    };
+    props.ExecuteCotizacion(Obj);
+  }
+  function ValidateData() {
+    if (Moneda === "" && Cripto === "") {
+      return true;
+    } else if (Moneda !== "" && Cripto === "") {
+      return true;
+    } else {
+      return false;
     }
-    function ValidateData(){
-        if (Moneda=== '' && Cripto=== ''){
-            return true;
-        }
-        else if (Moneda!== '' && Cripto=== ''){
-            return true;
-        }
-        else{
-           return false;
-        }
-    }
-    return (
-        <div>
-            <h2 className="text-white">Cotiza tus Criptomonedas</h2>
-             <div className="form-group">
-                 <label>Selecciona tu moneda</label>
-             <select className="form-control" onChange={(e)=> SetMoneda(e.target.value)}>
-                <option selected disabled value="default">--Selecciona--</option>
-                <option value="USD">Dolar Estadounidense (USD)</option>
-                <option value="USD">Peso Dominicano (DOP)</option>
-             </select>
-             </div>
-             <div className="form-group">
-                 <label>Selecciona tu criptomoneda</label>
-             <select className="form-control" onChange={(e)=> SetCripto(e.target.value)} disabled={Moneda=== ''? true: false}>
-             <option selected disabled value="default">--Selecciona--</option>
-                <option value="ET">Eteriun</option>
-                <option value="BT">Bitcoin</option>
-             </select>
-             </div>
-             <div className="form-group">
-                <button className="btn btn-primary btn-lg btn-block" onClick={SaveData} disabled={ValidateData}>Cotizar Moneda</button>
-             </div>
-        </div>
-    )
+  }
+  return (
+    <div>
+      <h2 className="text-white">Cotiza tus Criptomonedas</h2>
+      <div className="form-group">
+        <label>Selecciona tu moneda</label>
+        <select
+          className="form-control"
+          onChange={e => SetMoneda(e.target.value)}
+        >
+          <option selected disabled value="default">
+            --Selecciona--
+          </option>
+          <option value="USD">Dolar Estadounidense (USD)</option>
+          <option value="DOP">Peso Dominicano (DOP)</option>
+          <option value="EUR">Euro (EUR)</option>
+          <option value="GBP">Libras (GBP)</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Selecciona tu criptomoneda</label>
+        <select
+          className="form-control"
+          onChange={e => SetCripto(e.target.value)}
+          disabled={Moneda === "" ? true : false}>
+          <option selected disabled value="default">
+            --Selecciona--
+          </option>
+
+          {criptoCurrency.map((data, index) => (
+            <option key={index} value={data.CoinInfo.Name}>{data.CoinInfo.FullName}</option>
+          ))}
+         
+        </select>
+      </div>
+      <div className="form-group">
+        <button
+          className="btn btn-primary btn-lg btn-block"
+          onClick={SaveData}
+          //disabled={ValidateData}
+        >
+          Cotizar Moneda
+        </button>
+      </div>
+    </div>
+  );
 }

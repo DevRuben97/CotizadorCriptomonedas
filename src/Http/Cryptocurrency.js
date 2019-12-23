@@ -1,14 +1,15 @@
 import http from './Http';
 
-export function GetCurrencysList(){
+export async function GetCurrencysList(){
 
-   return http.get('/v1/exchange/map');
+   return await http.get('');
 }
 
-export function GetCryptocurrencysList(){
-   return http.get('');
+export async function GetCryptocurrencysList(limit){
+   return await http.get(`top/mktcapfull?limit=${limit}&tsym=USD`);
 }
 
-export function GetCryptocurrencysHistory(data){
+export async function GetCryptocurrencysHistory(Currency, CriptoCurrency){
     
+   return await http.get('');
 }

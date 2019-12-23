@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-const ApiKey= 'b7af1e1c-2b4b-49b6-88e6-e32c9044a285';
+const apiKey= '514681f42cab05e094166eba71d9e75d7e2893a5c9f635a95b0ee15c32a044c5';
 
 const http= axios.create({
-    baseURL: 'https://pro-api.coinmarketcap.com',
+    baseURL: 'https://min-api.cryptocompare.com/data/',
     headers: {
-        ContentType: 'application/json',
         accept: '*',
-        'X-CMC_PRO_API_KEY': ApiKey
+        Authorization: {
+            ApiKey: apiKey
+        }
     }
     
 })

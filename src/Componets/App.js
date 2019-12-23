@@ -19,10 +19,12 @@ function App() {
   const[Loading,setLoanding]= useState(false);
   
   function ExecuteCotizacion(Data){
-    alert('hola');
-    GetCryptocurrencysHistory(Data);
+    //GetCryptocurrencysHistory(Data);
     setLoanding(true);
 
+    setTimeout(()=>{
+      setLoanding(false);
+    },2000)
   }
   function ShowResults(){
     if (Loading){
