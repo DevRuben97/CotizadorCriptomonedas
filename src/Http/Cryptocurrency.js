@@ -9,7 +9,7 @@ export async function GetCryptocurrencysList(limit){
    return await http.get(`top/mktcapfull?limit=${limit}&tsym=USD`);
 }
 
-export async function GetCryptocurrencysHistory(Currency, CriptoCurrency){
+export async function GetCryptocurrencysHistory({Currency, CriptoCurrency}){
     
-   return await http.get('');
+   return await http.get(`pricemultifull?fsyms=${CriptoCurrency}&tsyms=${Currency}`);
 }

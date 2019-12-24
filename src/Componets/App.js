@@ -1,12 +1,12 @@
 
 //Resources
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CriptoImage from '../Img/CriptoImage.png';
 
 //Componests
 import Form from './Form';
 import Spinner from './LoadingSpinner'
-import CriptoCurrencyData from './CriptoCurrencyData';
+import Quotation from './Quotation';
 
 
 //Functions
@@ -17,14 +17,20 @@ import {GetCryptocurrencysHistory} from '../Http/Cryptocurrency';
 function App() {
 
   const[Loading,setLoanding]= useState(false);
+  const [QuotationResult, SetQuotation]= useState({});
   
   function ExecuteCotizacion(Data){
-    //GetCryptocurrencysHistory(Data);
-    setLoanding(true);
-
-    setTimeout(()=>{
-      setLoanding(false);
-    },2000)
+    const RequestData= async ()=> {
+      setLoanding(true);
+      var {data}= await GetCryptocurrencysHistory(Data);
+      console.log(data.DISPLAY[Data.CriptoCurrency][Data.Currency]);
+      setTimeout(()=>{
+        SetQuotation(data.DISPLAY[Data.CriptoCurrency][Data.Currency]);
+        setLoanding(false);
+      },3000)
+    }
+    RequestData();
+    
   }
   function ShowResults(){
     if (Loading){
@@ -32,9 +38,9 @@ function App() {
         <Spinner></Spinner>
       )
     }
-    else{
+    else {
       return (
-       <CriptoCurrencyData></CriptoCurrencyData>
+       <Quotation Data={QuotationResult}></Quotation>
       )
     }
   }
