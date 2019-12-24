@@ -1,6 +1,6 @@
 
 //Resources
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import CriptoImage from '../Img/CriptoImage.png';
 
 //Componests
@@ -48,7 +48,7 @@ function App() {
     <div className="container">
       <div className="row">
         <div className="col-md-5 ContenedorImagen">
-        <img src={CriptoImage} className="ImagenCriptomonedas"></img>
+        <img src={CriptoImage} className="ImagenCriptomonedas" alt="Imagen criptomonedas"></img>
         </div>
         <div className="col-md-5 ContenedorImagen">
           <Form ExecuteCotizacion={ExecuteCotizacion}></Form>

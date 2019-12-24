@@ -22,14 +22,6 @@ export default function Form(props) {
     };
     props.ExecuteCotizacion(Obj);
   }
-  function ValidateData() {
-    if (Moneda === "" || Cripto === "") {
-      return true;
-
-    } else {
-      return false;
-    }
-  }
   return (
     <div>
       <h2 className="text-white">Cotiza tus Criptomonedas</h2>
@@ -68,7 +60,7 @@ export default function Form(props) {
         <button
           className="btn btn-primary btn-lg btn-block"
           onClick={SaveData}
-          //disabled={ValidateData}
+          disabled= {Cripto=== ''? true: false}
         >Cotizar Moneda</button>
       </div>
     </div>
